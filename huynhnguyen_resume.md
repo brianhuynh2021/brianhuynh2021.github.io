@@ -1,6 +1,6 @@
 **NGUYEN THANH HUYNH**
 **Backend Engineer**
-📍 Sky9 Apartment, District 9, HCM | 📞 (+84) 984 883 750 | 📧 [huynh2102@gmail.com](mailto:huynh2102@gmail.com)
+📍 District 9, HCM | 📞 (+84) 984 883 750 | 📧 [huynh2102@gmail.com](mailto:huynh2102@gmail.com)
 🌐 brianhuynh2021.github.io | 💻 github.com/brianhuynh2021
 
 ---
