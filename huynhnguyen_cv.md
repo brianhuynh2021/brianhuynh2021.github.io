@@ -17,7 +17,7 @@ Backend Engineer with 3+ years of experience designing, building, and deploying 
 
 **Remote | May 2025 – Present**
 
-- 🚀 Actively solving Data Structures and Algorithms problems daily, with 50+ solutions for cracking the coding interview: https\://github.com/brianhuynh2021/python\_leetcode/tree/master/coding\_challenge/Python
+- 🚀 Actively solving Data Structures and Algorithms problems daily, with 50+ solutions for cracking the coding interview: [GitHub Repository](https://github.com/brianhuynh2021/python_leetcode/tree/master/coding_challenge/Python)
 - 🎓 Pursuing a Bachelor’s in Software Engineering at UIT–VNU-HCM.
 - 💻 Developed a robust Course Management System with Django and SQLite, implemented CI/CD pipelines, and Dockerized deployment. [GitHub Repository](https://github.com/brianhuynh2021/course-web-app-be)
 
