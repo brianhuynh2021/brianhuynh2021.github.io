@@ -41,7 +41,7 @@ Backend Engineer with 3+ years of expertise delivering robust, scalable systems 
 ## 🎓 Education
 
 * **Diploma of Computer Science** – University of Science, College of IT & Engineering *(Sep 2010 - Oct 2013)*
-* **Bachelor's in Software Engineering (Ongoing)** – UIT–VNU-HCM *(May 2025 – Present)*
+* **Bachelor's in Software Engineering (Ongoing)** – UIT–VNU-HCM *(Apr 2024 – Present)*
 
 ---
 
