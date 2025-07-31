@@ -1,6 +1,6 @@
 **NGUYEN THANH HUYNH**\
 **Backend Engineer**\
-📍 Sky9 Apartment, District 9, HCM | 📞 (+84) 984 883 750 | 📧 [huynh2102@gmail.com](mailto\:huynh2102@gmail.com)\
+📍 District 9, HCM | 📞 (+84) 984 883 750 | 📧 [huynh2102@gmail.com](mailto\:huynh2102@gmail.com)\
 🌐 [brianhuynh2021.github.io](https://brianhuynh2021.github.io) | 💻 [github.com/brianhuynh2021](https://github.com/brianhuynh2021)
 
 ---
@@ -57,7 +57,7 @@ Backend Engineer with 3+ years of experience designing, building, and deploying 
 ## 🎓 Education
 
 - **Diploma of Computer Science** – University of Science, College of IT & Engineering *(Sep 2010 - Oct 2013)*
-- **Bachelor’s in Software Engineering (Ongoing)** – UIT–VNU-HCM *(May 2025 – Present)*
+- **Bachelor’s in Software Engineering (Ongoing)** – UIT–VNU-HCM *(Apr 2024 – Present)*
 
 ---
 
