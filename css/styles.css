@@ -743,3 +743,13 @@ footer {
     padding: 5px 10px;
   }
 }
+
+#contact a {
+  color: #ffffffec;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#contact a:hover {
+  color: #bc815f;
+}
