@@ -71,7 +71,7 @@
 
         objectUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
         $('body').removeClass('resume-locked').addClass('resume-unlocked');
-        $resumeNote.removeClass('resume-warning');
+        $resumeNote.removeClass('resume-request-note resume-warning').addClass('resume-status-note');
         $resumeDownload.attr('href', objectUrl).attr('download', 'HuynhNguyen_resume.pdf').removeAttr('hidden');
         $resumeOpen.attr('href', objectUrl).removeAttr('hidden');
     }
@@ -79,11 +79,19 @@
     function decryptResume(keyValue) {
         if (!keyValue) {
             $('body').addClass('resume-locked').removeClass('resume-unlocked');
-            $resumeNote.addClass('resume-warning').text('Resume available on request. Contact me by email or Zalo.');
+            $resumeNote.removeClass('resume-status-note resume-warning').addClass('resume-request-note').empty().append(
+                $('<span>').text('Resume available on request.'),
+                $('<span>').append(
+                    document.createTextNode('Contact by '),
+                    $('<a>').attr('href', 'mailto:huynh2102@gmail.com').text('email'),
+                    document.createTextNode(' or Zalo')
+                ),
+                $('<strong>').text('+84 984 883 750')
+            );
             return;
         }
 
-        $resumeNote.removeClass('resume-warning').text('Unlocking resume...');
+        $resumeNote.removeClass('resume-request-note resume-warning').addClass('resume-status-note').text('Unlocking resume...');
 
         fetch(encryptedResumePath + '?v=' + Date.now())
             .then(function(response) {
@@ -109,7 +117,7 @@
             })
             .catch(function(error) {
                 $('body').addClass('resume-locked').removeClass('resume-unlocked');
-                $resumeNote.addClass('resume-warning').text('Invalid resume link.');
+                $resumeNote.removeClass('resume-request-note resume-status-note').addClass('resume-warning').text('Invalid resume link.');
                 setStatus(error.message, true);
             });
     }

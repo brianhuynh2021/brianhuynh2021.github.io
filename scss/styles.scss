@@ -396,24 +396,51 @@ footer {
         margin: 0 0 24px;
     }
 
-    #resume-note {
-        font-size: 0.95em;
-        line-height: 1.45;
-        margin: 20px auto 0;
-        max-width: 420px;
-    }
-
-    .resume-warning {
-        background: rgba(127, 29, 29, 0.16);
-        border: 1px solid rgba(255, 214, 214, 0.28);
-        border-radius: 6px;
-        color: #ffe2e2;
-        padding: 9px 14px;
-    }
-
     .btn-rounded-white {
         margin: 6px;
     }
+}
+
+.resume-request-note {
+    align-items: center;
+    color: rgba(255, 255, 255, 0.88);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    column-gap: 8px;
+    row-gap: 4px;
+    justify-content: center;
+    line-height: 1.45;
+    margin: 20px auto 0;
+    max-width: 460px;
+
+    a {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+        color: #fff;
+        font-weight: 700;
+
+        &:focus,
+        &:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    }
+
+    strong {
+        color: #fff;
+        flex-basis: 100%;
+        font-weight: 700;
+    }
+}
+
+.resume-status-note,
+.resume-warning {
+    font-size: 0.95em;
+    margin: 20px auto 0;
+}
+
+.resume-warning {
+    color: #ffd6d6;
 }
 
 .resume-locked {
