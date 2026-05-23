@@ -836,6 +836,34 @@ footer {
     }
 }
 
+.contact-methods {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto 18px;
+}
+
+.contact-method {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    gap: 8px;
+    min-height: 40px;
+    padding: 0 14px;
+
+    &:focus,
+    &:hover {
+        background: rgba(255, 255, 255, 0.22);
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
 #contact-form {
     max-width: 500px;
     margin: 0 auto;

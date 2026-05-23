@@ -192,12 +192,15 @@
         });
 
         $('#contact h2').text(data.contact.heading);
-        var $contactLine = $('#contact > div').first();
-        $contactLine.find('span:first').empty().append(
-            document.createTextNode('Email: '),
-            $('<a>').attr('href', 'mailto:' + data.contact.email).text(data.contact.email)
-        );
-        $contactLine.find('span:last').text('-  Tel/Zalo/WhatsApp: ' + data.contact.phone);
+        var $contactMethods = $('.contact-methods').empty();
+        $('<a>').addClass('contact-method').attr('href', 'mailto:' + data.contact.email).append(
+            $('<i>').addClass('fa fa-envelope').attr('aria-hidden', 'true'),
+            $('<span>').text(data.contact.email)
+        ).appendTo($contactMethods);
+        $('<a>').addClass('contact-method').attr('href', 'tel:' + data.contact.phone.replace(/\D/g, '')).append(
+            $('<i>').addClass('fa fa-phone').attr('aria-hidden', 'true'),
+            $('<span>').text(data.contact.phone)
+        ).appendTo($contactMethods);
         $('#contact-form form').attr('action', data.contact.formAction);
 
         $('.copyright p').text(data.footer.copyright);
