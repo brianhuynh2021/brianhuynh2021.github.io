@@ -70,6 +70,7 @@
         }
 
         objectUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
+        $('body').removeClass('resume-locked').addClass('resume-unlocked');
         $resumeNote.removeClass('resume-warning');
         $resumeDownload.attr('href', objectUrl).attr('download', 'HuynhNguyen_resume.pdf').removeAttr('hidden');
         $resumeOpen.attr('href', objectUrl).removeAttr('hidden');
@@ -77,7 +78,8 @@
 
     function decryptResume(keyValue) {
         if (!keyValue) {
-            $resumeNote.addClass('resume-warning').text('Please contact me via email or Zalo for my resume.');
+            $('body').addClass('resume-locked').removeClass('resume-unlocked');
+            $resumeNote.addClass('resume-warning').text('Resume available on request. Contact me by email or Zalo.');
             return;
         }
 
@@ -106,6 +108,7 @@
                 $resumeNote.text('Resume unlocked.');
             })
             .catch(function(error) {
+                $('body').addClass('resume-locked').removeClass('resume-unlocked');
                 $resumeNote.addClass('resume-warning').text('Invalid resume link.');
                 setStatus(error.message, true);
             });
