@@ -217,6 +217,18 @@ footer {
   max-width: 340px;
   min-height: 20px;
 }
+#resume-private-link {
+  background: rgba(255, 255, 255, 0.95);
+  border: 0;
+  border-radius: 4px;
+  color: #374054;
+  display: block;
+  font-size: 0.9em;
+  margin: 12px auto 0;
+  max-width: 520px;
+  padding: 10px;
+  width: 100%;
+}
 .resume-page {
   background: url(../images/lead-bg.jpg);
   background-size: cover;

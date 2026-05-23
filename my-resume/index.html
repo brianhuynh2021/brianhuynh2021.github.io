@@ -23,12 +23,14 @@
             </a>
             <h1 id="resume-name">Huynh Nguyen</h1>
             <p id="resume-title">Software Engineer</p>
-            <a id="resume-download" href="../HuynhNguyen_resume.pdf" download="HuynhNguyen_resume.pdf" class="btn-rounded-white">Download Resume</a>
-            <a id="resume-open" href="../HuynhNguyen_resume.pdf" target="_blank" class="btn-rounded-white">Open PDF</a>
+            <p id="resume-note">Use your private resume link to unlock the PDF.</p>
+            <a id="resume-download" href="#" download="HuynhNguyen_resume.pdf" class="btn-rounded-white" hidden>Download Resume</a>
+            <a id="resume-open" href="#" target="_blank" class="btn-rounded-white" hidden>Open PDF</a>
             <div id="resume-local-tools" hidden>
-                <label for="resume-upload" class="btn-rounded-white resume-upload-button">Attach New Resume</label>
+                <label for="resume-upload" class="btn-rounded-white resume-upload-button">Encrypt New Resume</label>
                 <input id="resume-upload" type="file" accept="application/pdf" hidden>
                 <div id="resume-upload-status" role="status" aria-live="polite"></div>
+                <input id="resume-private-link" type="text" readonly hidden>
             </div>
         </section>
     </main>

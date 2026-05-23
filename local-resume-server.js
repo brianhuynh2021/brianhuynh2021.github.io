@@ -3,7 +3,8 @@ const http = require('http');
 const path = require('path');
 
 const root = __dirname;
-const resumeFile = path.join(root, 'HuynhNguyen_resume.pdf');
+const encryptedResumeFile = path.join(root, 'documents', 'resume.enc');
+const localResumeFile = path.join(root, 'private', 'HuynhNguyen_resume.pdf');
 const portfolioDataFile = path.join(root, 'data', 'portfolio.json');
 const port = Number(process.env.PORT) || 8080;
 const host = '127.0.0.1';
@@ -13,6 +14,7 @@ const contentTypes = {
     '.gif': 'image/gif',
     '.html': 'text/html; charset=utf-8',
     '.ico': 'image/x-icon',
+    '.enc': 'application/octet-stream',
     '.jpg': 'image/jpeg',
     '.js': 'application/javascript; charset=utf-8',
     '.json': 'application/json; charset=utf-8',
@@ -45,80 +47,6 @@ function safeStaticPath(urlPath) {
     return filePath;
 }
 
-function getBoundary(contentType) {
-    const match = /boundary=(?:"([^"]+)"|([^;]+))/i.exec(contentType || '');
-    return match && (match[1] || match[2]);
-}
-
-function extractUploadedPdf(buffer, boundary) {
-    const body = buffer.toString('binary');
-    const marker = `--${boundary}`;
-    const parts = body.split(marker);
-
-    for (const part of parts) {
-        if (!part.includes('name="resume"') || !part.includes('filename=')) {
-            continue;
-        }
-
-        const headerEnd = part.indexOf('\r\n\r\n');
-        if (headerEnd === -1) {
-            continue;
-        }
-
-        const headers = part.slice(0, headerEnd);
-        if (/Content-Type:/i.test(headers) && !/Content-Type:\s*(application\/pdf|application\/octet-stream)/i.test(headers)) {
-            throw new Error('Please upload a PDF file.');
-        }
-
-        let fileBody = part.slice(headerEnd + 4);
-        fileBody = fileBody.replace(/\r\n--$/, '').replace(/\r\n$/, '');
-        const fileBuffer = Buffer.from(fileBody, 'binary');
-
-        if (fileBuffer.slice(0, 4).toString() !== '%PDF') {
-            throw new Error('The selected file does not look like a valid PDF.');
-        }
-
-        return fileBuffer;
-    }
-
-    throw new Error('No resume PDF was found in the upload.');
-}
-
-function handleResumeUpload(req, res) {
-    const boundary = getBoundary(req.headers['content-type']);
-
-    if (!boundary) {
-        send(res, 400, JSON.stringify({ error: 'Missing upload boundary.' }), 'application/json; charset=utf-8');
-        return;
-    }
-
-    const chunks = [];
-    let size = 0;
-    const maxSize = 10 * 1024 * 1024;
-
-    req.on('data', function(chunk) {
-        size += chunk.length;
-
-        if (size > maxSize) {
-            send(res, 413, JSON.stringify({ error: 'Resume must be 10MB or smaller.' }), 'application/json; charset=utf-8');
-            req.destroy();
-            return;
-        }
-
-        chunks.push(chunk);
-    });
-
-    req.on('end', function() {
-        try {
-            const pdf = extractUploadedPdf(Buffer.concat(chunks), boundary);
-            fs.writeFileSync(resumeFile, pdf);
-            send(res, 200, JSON.stringify({ ok: true, file: 'HuynhNguyen_resume.pdf' }), 'application/json; charset=utf-8');
-        } catch (error) {
-            send(res, 400, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
-        }
-    });
-}
-
 function readRequestBody(req, res, maxSize, onDone) {
     const chunks = [];
     let size = 0;
@@ -137,6 +65,47 @@ function readRequestBody(req, res, maxSize, onDone) {
 
     req.on('end', function() {
         onDone(Buffer.concat(chunks).toString('utf8'));
+    });
+}
+
+function handleEncryptedResumeSave(req, res) {
+    readRequestBody(req, res, 15 * 1024 * 1024, function(body) {
+        try {
+            const data = JSON.parse(body);
+
+            if (!data || typeof data.encryptedResume !== 'string') {
+                throw new Error('Missing encrypted resume data.');
+            }
+
+            const encryptedResume = Buffer.from(data.encryptedResume, 'base64');
+
+            if (!encryptedResume.length) {
+                throw new Error('Encrypted resume data is empty.');
+            }
+
+            fs.mkdirSync(path.dirname(encryptedResumeFile), { recursive: true });
+            fs.writeFileSync(encryptedResumeFile, encryptedResume);
+
+            if (typeof data.resumePdf === 'string') {
+                const resumePdf = Buffer.from(data.resumePdf, 'base64');
+
+                if (resumePdf.slice(0, 4).toString() !== '%PDF') {
+                    throw new Error('Local resume copy does not look like a valid PDF.');
+                }
+
+                fs.mkdirSync(path.dirname(localResumeFile), { recursive: true });
+                fs.writeFileSync(localResumeFile, resumePdf);
+            }
+
+            send(res, 200, JSON.stringify({
+                ok: true,
+                file: 'documents/resume.enc',
+                localFile: 'private/HuynhNguyen_resume.pdf',
+                privateUrl: data.privateUrl || ''
+            }), 'application/json; charset=utf-8');
+        } catch (error) {
+            send(res, 400, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
+        }
     });
 }
 
@@ -176,7 +145,7 @@ function handlePortfolioDataSave(req, res) {
 
 const server = http.createServer(function(req, res) {
     if (req.method === 'POST' && req.url === '/__resume_upload') {
-        handleResumeUpload(req, res);
+        handleEncryptedResumeSave(req, res);
         return;
     }
 
