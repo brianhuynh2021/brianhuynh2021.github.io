@@ -163,6 +163,10 @@
             decryptResume(getPrivateKeyFromHash());
         });
 
+    window.addEventListener('hashchange', function() {
+        decryptResume(getPrivateKeyFromHash());
+    });
+
     if (isLocalhost && $resumeTools.length) {
         $('body').addClass('local-resume-enabled');
         $resumeTools.removeAttr('hidden');
