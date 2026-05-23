@@ -217,6 +217,60 @@ footer {
   max-width: 340px;
   min-height: 20px;
 }
+.resume-page {
+  background: url(../images/lead-bg.jpg);
+  background-size: cover;
+  min-height: 100vh;
+}
+.resume-page:before {
+  background: rgba(33, 125, 187, 0.86);
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+#resume-page {
+  align-items: center;
+  display: flex;
+  min-height: 100vh;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+#resume-card {
+  color: #fff;
+  margin: 0 auto;
+  max-width: 560px;
+  text-align: center;
+}
+#resume-card h1 {
+  font-size: 3em;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 28px 0 8px;
+  text-transform: uppercase;
+}
+#resume-card p {
+  color: #a0cfee;
+  font-size: 1.45em;
+  margin: 0 0 24px;
+}
+#resume-card .btn-rounded-white {
+  margin: 6px;
+}
+.resume-back-link {
+  color: #fff;
+  display: inline-block;
+}
+.resume-back-link:focus, .resume-back-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.resume-back-link i {
+  margin-right: 6px;
+}
 .shadow {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }

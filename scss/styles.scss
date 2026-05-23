@@ -338,6 +338,71 @@ footer {
     min-height: 20px;
 }
 
+.resume-page {
+    background: url(../images/lead-bg.jpg);
+    background-size: cover;
+    min-height: 100vh;
+
+    &:before {
+        background: rgba($base-color-hover, 0.86);
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+}
+
+#resume-page {
+    align-items: center;
+    display: flex;
+    min-height: 100vh;
+    padding: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+#resume-card {
+    color: #fff;
+    margin: 0 auto;
+    max-width: 560px;
+    text-align: center;
+
+    h1 {
+        font-size: 3em;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        margin: 28px 0 8px;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: lighten($base-color, 25%);
+        font-size: 1.45em;
+        margin: 0 0 24px;
+    }
+
+    .btn-rounded-white {
+        margin: 6px;
+    }
+}
+
+.resume-back-link {
+    color: #fff;
+    display: inline-block;
+
+    &:focus,
+    &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    i {
+        margin-right: 6px;
+    }
+}
+
 .shadow {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }

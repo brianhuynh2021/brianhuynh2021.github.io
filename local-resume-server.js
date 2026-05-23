@@ -32,10 +32,14 @@ function send(res, statusCode, body, contentType) {
 function safeStaticPath(urlPath) {
     const cleanPath = decodeURIComponent(urlPath.split('?')[0]);
     const requested = cleanPath === '/' ? '/index.html' : cleanPath;
-    const filePath = path.normalize(path.join(root, requested));
+    let filePath = path.normalize(path.join(root, requested));
 
     if (!filePath.startsWith(root)) {
         return null;
+    }
+
+    if (!path.extname(filePath)) {
+        filePath = path.join(filePath, 'index.html');
     }
 
     return filePath;

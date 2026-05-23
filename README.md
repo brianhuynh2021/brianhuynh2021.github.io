@@ -53,9 +53,9 @@ Run the portfolio with the local helper server:
 npm start
 ```
 
-Open `http://localhost:8080`, click `Attach New Resume`, and select a PDF. This replaces `HuynhNguyen_resume.pdf` on your machine. Commit and push that PDF when you are ready to deploy it.
+Open `http://localhost:8080/my-resume/`, click `Attach New Resume`, and select a PDF. This replaces `HuynhNguyen_resume.pdf` on your machine. Commit and push that PDF when you are ready to deploy it.
 
-The attach button is only enabled on `localhost` or `127.0.0.1`, so it does not appear on GitHub Pages.
+The attach button is only enabled on `localhost` or `127.0.0.1`, so it does not appear on GitHub Pages. The homepage does not show a resume download button; the resume is available from the direct `/my-resume/` page when you choose to share that link.
 
 ### Updating Portfolio Content Locally
 
