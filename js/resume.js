@@ -1,6 +1,7 @@
 (function($) {
     var encryptedResumePath = '../documents/resume.enc';
     var isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    var SIGN_SECRET_HEX = '3075ea218982f17372721bb958715d96c5f1d92e3a1798d0e8b20596e77584ae'; // set by: npm run setup-resume
     var $resumeTools = $('#resume-local-tools');
     var $resumeUpload = $('#resume-upload');
     var $resumeStatus = $('#resume-upload-status');
@@ -55,9 +56,53 @@
         return base64ToBytes(base64);
     }
 
-    function getPrivateKeyFromHash() {
+    function hexToBytes(hex) {
+        var bytes = new Uint8Array(hex.length / 2);
+        for (var i = 0; i < bytes.length; i++) {
+            bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+        }
+        return bytes;
+    }
+
+    function validateToken(token) {
+        var parts = token.split('.');
+        if (parts.length !== 3) {
+            return Promise.resolve(null);
+        }
+
+        var expiryBytes = base64UrlDecode(parts[0]);
+        var expiryStr = String.fromCharCode.apply(null, expiryBytes);
+        var expiry = parseInt(expiryStr, 10);
+
+        if (isNaN(expiry) || expiry < Math.floor(Date.now() / 1000)) {
+            return Promise.resolve('__expired__');
+        }
+
+        var message = parts[0] + '.' + parts[1];
+        var secretBytes = hexToBytes(SIGN_SECRET_HEX);
+
+        return window.crypto.subtle.importKey('raw', secretBytes, { name: 'HMAC', hash: 'SHA-256' }, false, ['verify'])
+            .then(function(verifyKey) {
+                return window.crypto.subtle.verify('HMAC', verifyKey, base64UrlDecode(parts[2]), new TextEncoder().encode(message));
+            })
+            .then(function(valid) {
+                return valid ? parts[1] : null;
+            })
+            .catch(function() {
+                return null;
+            });
+    }
+
+    function resolveKey() {
         var params = new URLSearchParams(window.location.hash.replace(/^#/, ''));
-        return params.get('key');
+        var token = params.get('t') || params.get('token');
+        var key = params.get('k') || params.get('key');
+
+        if (token) {
+            return validateToken(token);
+        }
+
+        return Promise.resolve(key || null);
     }
 
     function importAesKey(keyBytes) {
@@ -77,6 +122,12 @@
     }
 
     function decryptResume(keyValue) {
+        if (keyValue === '__expired__') {
+            $('body').addClass('resume-locked').removeClass('resume-unlocked');
+            $resumeNote.removeClass('resume-request-note resume-status-note').addClass('resume-warning').text('This resume link has expired. Please request a new one.');
+            return;
+        }
+
         if (!keyValue) {
             $('body').addClass('resume-locked').removeClass('resume-unlocked');
             $resumeNote.removeClass('resume-status-note resume-warning').addClass('resume-request-note').empty().append(
@@ -157,14 +208,14 @@
             $('#resume-name').text(data.profile.name);
             $('#resume-title').text(data.profile.title);
             encryptedResumePath = '../' + (data.profile.resumeFile || 'documents/resume.enc');
-            decryptResume(getPrivateKeyFromHash());
+            resolveKey().then(decryptResume);
         })
         .fail(function() {
-            decryptResume(getPrivateKeyFromHash());
+            resolveKey().then(decryptResume);
         });
 
     window.addEventListener('hashchange', function() {
-        decryptResume(getPrivateKeyFromHash());
+        resolveKey().then(decryptResume);
     });
 
     if (isLocalhost && $resumeTools.length) {
@@ -190,7 +241,7 @@
 
         encryptPdf(file)
             .then(function(payload) {
-                var privateUrl = window.location.origin + window.location.pathname + '#key=' + payload.key;
+                var privateUrl = window.location.origin + window.location.pathname + '#k=' + payload.key;
 
                 return fetch('/__resume_upload', {
                     method: 'POST',
@@ -214,7 +265,7 @@
                 $privateLink.val(result.privateUrl).removeAttr('hidden').select();
                 setStatus('Encrypted resume saved. Copy the private link below, then commit and push documents/resume.enc.');
                 window.location.hash = result.privateUrl.split('#')[1];
-                decryptResume(getPrivateKeyFromHash());
+                resolveKey().then(decryptResume);
             })
             .catch(function(error) {
                 setStatus(error.message, true);

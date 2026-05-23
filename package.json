@@ -5,7 +5,8 @@
   "main": "js/scripts.js",
   "scripts": {
     "start": "node local-resume-server.js",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "setup-resume": "node scripts/setup-resume.js"
   },
   "keywords": [
     "portfolio",

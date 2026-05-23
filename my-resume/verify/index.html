@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resume Link Generator</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../../libs/font-awesome/css/font-awesome.min.css">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/styles.css" rel="stylesheet">
+    <style>
+        .vo-card {
+            color: #fff;
+            margin: 0 auto;
+            max-width: 420px;
+            text-align: center;
+            width: 100%;
+        }
+        .vo-card h1 {
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin: 20px 0 6px;
+            text-transform: uppercase;
+        }
+        .vo-card > p {
+            color: #a0cfee;
+            font-size: 1.05em;
+            margin: 0 0 28px;
+        }
+        .vo-form {
+            text-align: left;
+        }
+        .vo-form label {
+            color: rgba(255, 255, 255, 0.7);
+            display: block;
+            font-size: 0.8em;
+            letter-spacing: 0.08em;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .vo-form input,
+        .vo-form select {
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 4px;
+            color: #fff;
+            display: block;
+            font-family: inherit;
+            font-size: 0.95em;
+            margin-bottom: 18px;
+            padding: 10px 13px;
+            width: 100%;
+        }
+        .vo-form input:focus,
+        .vo-form select:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            outline: none;
+        }
+        .vo-form input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+        .vo-form select option {
+            background: #374054;
+        }
+        .vo-form .btn-rounded-white {
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1em;
+            width: 100%;
+        }
+        .vo-error {
+            color: #ffd6d6;
+            font-size: 0.9em;
+            margin-bottom: 14px;
+        }
+        .vo-result {
+            margin-top: 24px;
+        }
+        .vo-expires {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.85em;
+            margin-bottom: 10px;
+        }
+        .vo-link-box {
+            background: rgba(255, 255, 255, 0.95);
+            border: 0;
+            border-radius: 4px;
+            color: #374054;
+            display: block;
+            font-size: 0.82em;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            resize: none;
+            width: 100%;
+            word-break: break-all;
+        }
+    </style>
+</head>
+
+<body class="resume-page">
+    <main id="resume-page">
+        <section class="vo-card shadow-large">
+            <a class="resume-back-link" href="../">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                Resume
+            </a>
+            <h1>Resume Access</h1>
+            <p>Generate a time-limited link</p>
+
+            <div id="auth-section">
+                <form id="auth-form" class="vo-form">
+                    <label for="vo-password">Password</label>
+                    <input type="password" id="vo-password" placeholder="Enter password" autocomplete="current-password" required>
+                    <div id="auth-error" class="vo-error" hidden></div>
+                    <button type="submit" class="btn-rounded-white">Unlock</button>
+                </form>
+            </div>
+
+            <div id="generate-section" hidden>
+                <div class="vo-form">
+                    <label for="vo-days">Valid for</label>
+                    <select id="vo-days">
+                        <option value="1">1 day</option>
+                        <option value="3" selected>3 days</option>
+                        <option value="5">5 days</option>
+                        <option value="7">7 days</option>
+                    </select>
+                    <div id="gen-error" class="vo-error" hidden></div>
+                    <button type="button" id="vo-generate" class="btn-rounded-white">Generate Link</button>
+                </div>
+
+                <div id="vo-result" class="vo-result" hidden>
+                    <div id="vo-expires" class="vo-expires"></div>
+                    <textarea id="vo-link" class="vo-link-box" rows="3" readonly></textarea>
+                    <button type="button" id="vo-copy" class="btn-rounded-white">Copy Link</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../js/verify.js"></script>
+</body>
+
+</html>
