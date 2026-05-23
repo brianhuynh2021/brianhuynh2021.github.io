@@ -1,11 +1,11 @@
 {
   "profile": {
-    "name": "Brian Huynh",
+    "name": "Huynh Nguyen",
     "title": "Software Engineer",
     "resumeFile": "HuynhNguyen_resume.pdf"
   },
   "about": [
-    "My name is Brian Huynh, and I'm currently working as a Python backend developer for Chatbot AI project at a Digital bank in Industrial Zone center of Ho Chi Minh city.",
+    "My name is Huynh Nguyen, and I'm currently working as a Python backend developer for Chatbot AI project at a Digital bank in Industrial Zone center of Ho Chi Minh city.",
     "Please spend a little time to know about me. If you are interest and want to know more information you can contact me through the form below.",
     "I'd like to share a glimpse of my journey to get experiences through as an developer I've held along the way. Thank you for taking the time to get to know me"
   ],
@@ -149,7 +149,7 @@
     "formAction": "https://formspree.io/f/mbjvollo"
   },
   "footer": {
-    "copyright": "Copyright © 2023 BRIAN HUYNH",
+    "copyright": "Copyright © 2023 HUYNH NGUYEN",
     "social": [
       {
         "label": "GitHub",
