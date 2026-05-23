@@ -199,6 +199,24 @@ footer {
   background: #fff;
   text-decoration: none;
 }
+#resume-local-tools {
+  display: none;
+  margin-top: 14px;
+}
+.local-resume-enabled #resume-local-tools {
+  display: block;
+}
+.resume-upload-button {
+  cursor: pointer;
+}
+#resume-upload-status {
+  color: #fff;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 10px auto 0;
+  max-width: 340px;
+  min-height: 20px;
+}
 .shadow {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -704,7 +722,8 @@ footer {
   #lead-content h2 {
     font-size: 1.3em;
   }
-  #lead-content a {
+  #lead-content a,
+  #lead-content .resume-upload-button {
     padding: 10px 20px;
   }
   #lead-down {
@@ -738,7 +757,8 @@ footer {
   #lead-content h2 {
     font-size: 1em;
   }
-  #lead-content a {
+  #lead-content a,
+  #lead-content .resume-upload-button {
     font-size: 0.9em;
     padding: 5px 10px;
   }

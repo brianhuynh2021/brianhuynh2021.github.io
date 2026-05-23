@@ -4,6 +4,7 @@
   "description": "",
   "main": "js/scripts.js",
   "scripts": {
+    "start": "node local-resume-server.js",
     "watch": "gulp watch"
   },
   "keywords": [
