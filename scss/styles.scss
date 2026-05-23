@@ -415,19 +415,19 @@ footer {
     max-width: 460px;
 
     a {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.65);
-        color: #fff;
+        border-bottom: 1px solid rgba(245, 158, 11, 0.65);
+        color: #ffe0a3;
         font-weight: 700;
 
         &:focus,
         &:hover {
-            color: #fff;
+            color: #fff2cc;
             text-decoration: none;
         }
     }
 
     strong {
-        color: #fff;
+        color: #ffd28a;
         flex-basis: 100%;
         font-weight: 700;
     }
