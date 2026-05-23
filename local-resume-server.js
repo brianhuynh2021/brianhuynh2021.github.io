@@ -4,6 +4,7 @@ const path = require('path');
 
 const root = __dirname;
 const resumeFile = path.join(root, 'HuynhNguyen_resume.pdf');
+const portfolioDataFile = path.join(root, 'data', 'portfolio.json');
 const port = Number(process.env.PORT) || 8080;
 const host = '127.0.0.1';
 
@@ -61,7 +62,7 @@ function extractUploadedPdf(buffer, boundary) {
         }
 
         const headers = part.slice(0, headerEnd);
-        if (!/Content-Type:\s*application\/pdf/i.test(headers)) {
+        if (/Content-Type:/i.test(headers) && !/Content-Type:\s*(application\/pdf|application\/octet-stream)/i.test(headers)) {
             throw new Error('Please upload a PDF file.');
         }
 
@@ -114,9 +115,69 @@ function handleResumeUpload(req, res) {
     });
 }
 
+function readRequestBody(req, res, maxSize, onDone) {
+    const chunks = [];
+    let size = 0;
+
+    req.on('data', function(chunk) {
+        size += chunk.length;
+
+        if (size > maxSize) {
+            send(res, 413, JSON.stringify({ error: 'Request body is too large.' }), 'application/json; charset=utf-8');
+            req.destroy();
+            return;
+        }
+
+        chunks.push(chunk);
+    });
+
+    req.on('end', function() {
+        onDone(Buffer.concat(chunks).toString('utf8'));
+    });
+}
+
+function validatePortfolioData(data) {
+    const requiredObjects = ['profile', 'contact', 'footer'];
+    const requiredArrays = ['about', 'skills', 'projects', 'experience', 'education'];
+
+    if (!data || typeof data !== 'object' || Array.isArray(data)) {
+        throw new Error('Portfolio data must be a JSON object.');
+    }
+
+    requiredObjects.forEach(function(key) {
+        if (!data[key] || typeof data[key] !== 'object' || Array.isArray(data[key])) {
+            throw new Error(`Missing portfolio section: ${key}.`);
+        }
+    });
+
+    requiredArrays.forEach(function(key) {
+        if (!Array.isArray(data[key])) {
+            throw new Error(`Portfolio section must be a list: ${key}.`);
+        }
+    });
+}
+
+function handlePortfolioDataSave(req, res) {
+    readRequestBody(req, res, 1024 * 1024, function(body) {
+        try {
+            const data = JSON.parse(body);
+            validatePortfolioData(data);
+            fs.writeFileSync(portfolioDataFile, JSON.stringify(data, null, 2) + '\n');
+            send(res, 200, JSON.stringify({ ok: true, file: 'data/portfolio.json' }), 'application/json; charset=utf-8');
+        } catch (error) {
+            send(res, 400, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
+        }
+    });
+}
+
 const server = http.createServer(function(req, res) {
     if (req.method === 'POST' && req.url === '/__resume_upload') {
         handleResumeUpload(req, res);
+        return;
+    }
+
+    if (req.method === 'POST' && req.url === '/__portfolio_data') {
+        handlePortfolioDataSave(req, res);
         return;
     }
 
@@ -161,5 +222,5 @@ server.on('error', function(error) {
 
 server.listen(port, host, function() {
     console.log(`Portfolio running at http://localhost:${port}`);
-    console.log('Use the local Attach New Resume button to replace HuynhNguyen_resume.pdf.');
+    console.log(`Open http://localhost:${port}/admin.html to update portfolio content locally.`);
 });

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Portfolio Editor</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+    <link href="css/admin.css" rel="stylesheet">
+</head>
+
+<body>
+    <main class="admin-shell">
+        <aside class="admin-sidebar">
+            <h1>Portfolio Editor</h1>
+            <nav>
+                <a href="#profile">Profile</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </aside>
+
+        <section class="admin-workspace">
+            <div class="admin-toolbar">
+                <div>
+                    <strong>Local content editor</strong>
+                    <span id="admin-mode">Checking server...</span>
+                </div>
+                <div class="admin-actions">
+                    <a class="secondary-action" href="index.html" target="_blank">Preview</a>
+                    <button id="save-portfolio" type="button">Save Changes</button>
+                </div>
+            </div>
+
+            <div id="admin-status" role="status" aria-live="polite"></div>
+            <form id="portfolio-form"></form>
+        </section>
+    </main>
+
+    <template id="section-template">
+        <section class="editor-section">
+            <div class="section-heading">
+                <h2></h2>
+                <button class="section-action" type="button"></button>
+            </div>
+            <div class="section-body"></div>
+        </section>
+    </template>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

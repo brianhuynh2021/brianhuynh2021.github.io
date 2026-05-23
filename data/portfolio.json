@@ -1,0 +1,169 @@
+{
+  "profile": {
+    "name": "Brian Huynh",
+    "title": "Software Engineer",
+    "resumeFile": "HuynhNguyen_resume.pdf"
+  },
+  "about": [
+    "My name is Brian Huynh, and I'm currently working as a Python backend developer for Chatbot AI project at a Digital bank in Industrial Zone center of Ho Chi Minh city.",
+    "Please spend a little time to know about me. If you are interest and want to know more information you can contact me through the form below.",
+    "I'd like to share a glimpse of my journey to get experiences through as an developer I've held along the way. Thank you for taking the time to get to know me"
+  ],
+  "skills": [
+    "Python (main language)",
+    "Django",
+    "JavaScript",
+    "Go",
+    "Vue Js",
+    "Docker",
+    "AWS",
+    "Milvus",
+    "SQL (postgresql, mysql)"
+  ],
+  "projects": [
+    {
+      "title": "Data Fluct International Company",
+      "image": "images/datafluct.jpg",
+      "summary": "Working projects:",
+      "items": [
+        {
+          "text": "Carbon dyoxin reducing app",
+          "url": "https://wallet.becoz.ai/",
+          "linkText": "View Project"
+        },
+        {
+          "text": "ETL data platform for analysis businesses (current working)",
+          "url": "https://airlake.ai/",
+          "linkText": "View Project"
+        },
+        {
+          "text": "Forcast revenue of selling stores",
+          "url": "https://service.datafluct.com/perswell",
+          "linkText": "View Project"
+        },
+        {
+          "text": "Inteligent docs processor",
+          "url": "https://github.com/brianhuynh2021/intelligent-doc-processor",
+          "linkText": "Inteligent docs processor"
+        }
+      ]
+    },
+    {
+      "title": "FPT SoftWare Company",
+      "image": "images/haliburton.jpg",
+      "summary": "Working projects:",
+      "items": [
+        {
+          "text": "Haliburton Project: Forecasting Oil and Carbon Dioxide Levels. The project aims to analyze and predict trends in oil production and carbon dioxide emissions, using advanced data analysis and modeling techniques.",
+          "url": "",
+          "linkText": ""
+        }
+      ]
+    },
+    {
+      "title": "Individual Projects",
+      "image": "images/personal_project.jpg",
+      "summary": "Working projects:",
+      "items": [
+        {
+          "text": "HTML - CSS - Javascript (Vuejs framework)",
+          "url": "https://github.com/brianhuynh2021/HTML-CSS-Javascript",
+          "linkText": "HTML - CSS - Javascript (Vuejs framework)"
+        },
+        {
+          "text": "using API for analysis stock",
+          "url": "https://github.com/brianhuynh2021/Use_API_to_clone_and_analyst_stock",
+          "linkText": "using API for analysis stock"
+        },
+        {
+          "text": "Django blog",
+          "url": "https://github.com/brianhuynh2021/myDjangoBlog",
+          "linkText": "Django blog"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "date": "Mar 2024 - Apr 2025",
+      "company": "Bstar Solutions Company",
+      "companyUrl": "",
+      "role": "Python backend developer for Chatbot AI at banking company",
+      "details": [
+        "API Development: Designed and implemented RESTful APIs using FastAPI to handle data extraction, data embedding, and integration with PostgreSQL and Milvus vector database.",
+        "Data Processing: Created pipelines to extract data, train embeddings, and store them in a vector database for efficient similarity search."
+      ]
+    },
+    {
+      "date": "Sep 2022 - Feb 2024",
+      "company": "Data Fluct International",
+      "companyUrl": "https://datafluct.com/",
+      "role": "Django Python backend developer",
+      "details": [
+        "Data platform construction/operation support business, DX promotion support/operation support business, sustainable data business.",
+        "DFI connect many industries and find the best answers for the environment, society, business and people for building a social data infrastructure"
+      ]
+    },
+    {
+      "date": "Sep 2020 - Aug 2022",
+      "company": "FPT SoftWare Ho Chi Minh, Vietnam",
+      "companyUrl": "https://fptsoftware.com/",
+      "role": "Fulltime Backend developer",
+      "details": [
+        "FPT Software is a well-known global software company based in Vietnam. It is one of the leading IT services and outsourcing providers in the country.",
+        "The company provides services in areas such as software development, system integration, application maintenance, and more."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Ho Chi Minh university of Science",
+      "date": "Sept 2009 - Sept 2013",
+      "subtitle": "Bachelor of Computer Science at HCM university of Science",
+      "description": "Ho Chi Minh university of science is one of the pregious university in Vietnam that educated lots of student to be software engineer in Vietnam. This is the place where I took courses and graduated.",
+      "items": []
+    },
+    {
+      "title": "Cerificates",
+      "date": "",
+      "subtitle": "",
+      "description": "",
+      "items": [
+        {
+          "text": "Python Data Analysis - Freecodecamp",
+          "url": "https://www.freecodecamp.org/certification/brianhuynh/data-analysis-with-python-v7"
+        },
+        {
+          "text": "Google AI essential cetificate",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "heading": "Get in Touch With me",
+    "email": "huynh2102@gmail.com",
+    "phone": "+84 984 883 750",
+    "formAction": "https://formspree.io/f/mbjvollo"
+  },
+  "footer": {
+    "copyright": "Copyright © 2023 BRIAN HUYNH",
+    "social": [
+      {
+        "label": "GitHub",
+        "icon": "fa-github",
+        "url": "https://github.com/brianhuynh2021"
+      },
+      {
+        "label": "Stack Overflow",
+        "icon": "fa-stack-overflow",
+        "url": "https://stackoverflow.com/users/11211569/brian-huynh"
+      },
+      {
+        "label": "LinkedIn",
+        "icon": "fa-linkedin",
+        "url": "https://www.linkedin.com/in/brianhuynh2021/"
+      }
+    ]
+  }
+}

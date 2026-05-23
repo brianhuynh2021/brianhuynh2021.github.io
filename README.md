@@ -57,6 +57,18 @@ Open `http://localhost:8080`, click `Attach New Resume`, and select a PDF. This 
 
 The attach button is only enabled on `localhost` or `127.0.0.1`, so it does not appear on GitHub Pages.
 
+### Updating Portfolio Content Locally
+
+Most portfolio content now lives in `data/portfolio.json`. To edit it from a UI instead of changing HTML:
+
+```bash
+npm start
+```
+
+Open `http://localhost:8080/admin.html`, update the sections, and click `Save Changes`. This writes to `data/portfolio.json` on your machine.
+
+After reviewing the public page at `http://localhost:8080`, commit and push the changed JSON/PDF files. The editor can save only through the local server; GitHub Pages remains a static public site.
+
 At this point, the page is ready to go and you can begin to add your own information and make any needed changes. The sections below  contains a quick breakdown of each of the default sections and how they work.
 
 ### Using The Template As Is
