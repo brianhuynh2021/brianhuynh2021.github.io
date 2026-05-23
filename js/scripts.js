@@ -195,11 +195,17 @@
         var $contactMethods = $('.contact-methods').empty();
         $('<a>').addClass('contact-method').attr('href', 'mailto:' + data.contact.email).append(
             $('<i>').addClass('fa fa-envelope').attr('aria-hidden', 'true'),
-            $('<span>').text(data.contact.email)
+            $('<span>').append(
+                $('<strong>').text('Email'),
+                $('<span>').text(data.contact.email)
+            )
         ).appendTo($contactMethods);
         $('<a>').addClass('contact-method').attr('href', 'tel:' + data.contact.phone.replace(/\D/g, '')).append(
             $('<i>').addClass('fa fa-phone').attr('aria-hidden', 'true'),
-            $('<span>').text(data.contact.phone)
+            $('<span>').append(
+                $('<strong>').text('Phone / Zalo / WhatsApp'),
+                $('<span>').text(data.contact.phone)
+            )
         ).appendTo($contactMethods);
         $('#contact-form form').attr('action', data.contact.formAction);
 
