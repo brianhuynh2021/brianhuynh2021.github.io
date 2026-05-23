@@ -17,8 +17,10 @@
     "Vue Js",
     "Docker",
     "AWS",
-    "Milvus",
-    "SQL (postgresql, mysql)"
+    "Milvus, Qdrant",
+    "SQL (postgresql, mysql)",
+    "RAG, MCP",
+    "Langchain"
   ],
   "projects": [
     {
