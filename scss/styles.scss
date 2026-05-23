@@ -396,6 +396,20 @@ footer {
         margin: 0 0 24px;
     }
 
+    #resume-note {
+        font-size: 1em;
+        margin: 18px auto 22px;
+        max-width: 360px;
+    }
+
+    .resume-warning {
+        background: rgba(185, 28, 28, 0.22);
+        border: 1px solid rgba(255, 214, 214, 0.42);
+        border-radius: 6px;
+        color: #ffd6d6;
+        padding: 10px 14px;
+    }
+
     .btn-rounded-white {
         margin: 6px;
     }

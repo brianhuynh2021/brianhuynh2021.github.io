@@ -70,17 +70,18 @@
         }
 
         objectUrl = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
+        $resumeNote.removeClass('resume-warning');
         $resumeDownload.attr('href', objectUrl).attr('download', 'HuynhNguyen_resume.pdf').removeAttr('hidden');
         $resumeOpen.attr('href', objectUrl).removeAttr('hidden');
     }
 
     function decryptResume(keyValue) {
         if (!keyValue) {
-            $resumeNote.text('Use your private resume link to unlock the PDF.');
+            $resumeNote.addClass('resume-warning').text('Please contact me via email or Zalo for my resume.');
             return;
         }
 
-        $resumeNote.text('Unlocking resume...');
+        $resumeNote.removeClass('resume-warning').text('Unlocking resume...');
 
         fetch(encryptedResumePath + '?v=' + Date.now())
             .then(function(response) {
@@ -105,7 +106,7 @@
                 $resumeNote.text('Resume unlocked.');
             })
             .catch(function(error) {
-                $resumeNote.text('This resume link is invalid or expired.');
+                $resumeNote.addClass('resume-warning').text('Invalid resume link.');
                 setStatus(error.message, true);
             });
     }
