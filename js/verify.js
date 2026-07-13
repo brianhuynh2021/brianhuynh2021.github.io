@@ -1,8 +1,8 @@
 (function () {
     // These three vars are filled in by: npm run setup-resume
-    var SIGN_SECRET_HEX = '3075ea218982f17372721bb958715d96c5f1d92e3a1798d0e8b20596e77584ae';
-    var VERIFIER_HEX = 'aa650672ee18816902cd864c5954220c8ecec3d0094ceda8fbce8ca2d97058ab924e30872cbb43d817bd';
-    var ENCRYPTED_KEY_HEX = '57d3b1cf536bc7c44c94db725dee3856285adb6c86c155733e76240363fb9670cb6bb784f28dcc298efdeedb99ff994cffbcd70f01a3bbc0ff1b0dfa';
+    var SIGN_SECRET_HEX = '22896519a642956c914ca84a8c833ca9cac750830f5a83b832355d685fbf1c89';
+    var VERIFIER_HEX = 'c31ccf57d74ef271caa8d7aa70d8fc57e814893ee87db36eb3f9f16f87315dcf18a04d1ac98a55a69ce1';
+    var ENCRYPTED_KEY_HEX = '07569b7261c1f51195090c813673db3824d6acf454d6d55c51d6c4cecb8c98b9cbe5ac3f57e140c8214f8e9267248954d6411e36fab65070cb0757c0';
 
     if (!VERIFIER_HEX || !ENCRYPTED_KEY_HEX || !SIGN_SECRET_HEX) {
         document.getElementById('auth-section').innerHTML =

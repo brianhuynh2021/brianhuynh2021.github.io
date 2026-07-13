@@ -1,7 +1,7 @@
 (function($) {
     var encryptedResumePath = '../documents/resume.enc';
     var isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    var SIGN_SECRET_HEX = '3075ea218982f17372721bb958715d96c5f1d92e3a1798d0e8b20596e77584ae'; // set by: npm run setup-resume
+    var SIGN_SECRET_HEX = '22896519a642956c914ca84a8c833ca9cac750830f5a83b832355d685fbf1c89'; // set by: npm run setup-resume
     var $resumeTools = $('#resume-local-tools');
     var $resumeUpload = $('#resume-upload');
     var $resumeStatus = $('#resume-upload-status');
